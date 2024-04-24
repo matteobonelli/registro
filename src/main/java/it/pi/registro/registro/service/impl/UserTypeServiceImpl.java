@@ -1,16 +1,16 @@
-package it.pi.registro.registro.service;
+package it.pi.registro.registro.service.impl;
 
 import it.pi.registro.registro.entity.UserType;
 import it.pi.registro.registro.repository.UserTypeRepository;
+import it.pi.registro.registro.service.UserTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserTypeServiceImpl implements UserTypeService{
+public class UserTypeServiceImpl implements UserTypeService {
 
     private UserTypeRepository userTypeRepository;
 

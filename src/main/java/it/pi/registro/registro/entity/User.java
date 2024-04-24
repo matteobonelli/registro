@@ -2,10 +2,11 @@ package it.pi.registro.registro.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -32,8 +33,21 @@ public class User {
     @JoinColumn(name = "user_detail_id", referencedColumnName = "id")
     private UserDetail userDetail;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     private UserType userType;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<SubjectUser> subjectUsers = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
 

@@ -1,12 +1,15 @@
-package it.pi.registro.registro.service;
+package it.pi.registro.registro.service.impl;
 
-import it.pi.registro.registro.dto.UserCreateDTO;
+import it.pi.registro.registro.dto.request.UserCreateRequestDTO;
+import it.pi.registro.registro.dto.request.UserInfoRequestDTO;
+import it.pi.registro.registro.dto.response.UserInfoResponseDTO;
 import it.pi.registro.registro.entity.User;
 import it.pi.registro.registro.entity.UserDetail;
 import it.pi.registro.registro.entity.UserType;
 import it.pi.registro.registro.enums.UserTypeEnum;
 import it.pi.registro.registro.repository.UserRepository;
 import it.pi.registro.registro.repository.UserTypeRepository;
+import it.pi.registro.registro.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private UserTypeRepository userTypeRepository;
@@ -26,22 +29,22 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User createUserWithDetails(UserCreateDTO userCreateDTO) {
+    public User createUserWithDetails(UserCreateRequestDTO userCreateRequestDTO) {
 
         User user = new User();
-        user.setFirstName(userCreateDTO.getFirstName());
-        user.setLastName(userCreateDTO.getLastName());
-        user.setEmail(userCreateDTO.getEmail());
-        user.setPassword(userCreateDTO.getPassword());
+        user.setFirstName(userCreateRequestDTO.getFirstName());
+        user.setLastName(userCreateRequestDTO.getLastName());
+        user.setEmail(userCreateRequestDTO.getEmail());
+        user.setPassword(userCreateRequestDTO.getPassword());
 
         UserDetail userDetail = new UserDetail();
-        userDetail.setAddress(userCreateDTO.getAddress());
-        userDetail.setCity(userCreateDTO.getCity());
+        userDetail.setAddress(userCreateRequestDTO.getAddress());
+        userDetail.setCity(userCreateRequestDTO.getCity());
 
         UserType userType = userTypeRepository.findByType(UserTypeEnum.GUEST.toString());
 
-        if(userCreateDTO.getType() != null){
-            userType = userTypeRepository.findByType((userCreateDTO.getType().toString()));
+        if (userCreateRequestDTO.getType() != null) {
+            userType = userTypeRepository.findByType((userCreateRequestDTO.getType().toString()));
         }
 
         user.setUserDetail(userDetail);
@@ -60,6 +63,13 @@ public class UserServiceImpl implements UserService{
     public User getUserByEmail(String email) {
         User user = userRepository.findByEmail(email);
         return user;
+    }
+
+    @Override
+    public UserInfoResponseDTO getUserInfoByEmail(UserInfoRequestDTO userInfoRequestDTO) {
+
+        User user = userRepository.findByEmail(userInfoRequestDTO.getEmail());
+        return new UserInfoResponseDTO(user.getFirstName(), user.getLastName(), user.getUserType().getDescription());
     }
 
     @Override

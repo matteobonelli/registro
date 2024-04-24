@@ -1,4 +1,4 @@
-package it.pi.registro.registro.dto;
+package it.pi.registro.registro.dto.request;
 
 import it.pi.registro.registro.enums.UserTypeEnum;
 import jakarta.validation.constraints.Email;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreateDTO {
+public class UserCreateRequestDTO {
 
     @NotBlank
     private String firstName;
