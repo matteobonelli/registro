@@ -1,0 +1,26 @@
+2024-05-16T11:30:19.453+02:00  INFO 110320 --- [registro] [main] i.p.r.registro.RegistroApplication       : Starting RegistroApplication using Java 17.0.10 with PID 110320 (C:\esercizi_java\registro\target\classes started by bonel in C:\esercizi_java\registro)
+2024-05-16T11:30:19.462+02:00  INFO 110320 --- [registro] [main] i.p.r.registro.RegistroApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-05-16T11:30:20.921+02:00  INFO 110320 --- [registro] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-16T11:30:21.159+02:00  INFO 110320 --- [registro] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 220 ms. Found 7 JPA repository interfaces.
+2024-05-16T11:30:22.787+02:00  INFO 110320 --- [registro] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-05-16T11:30:22.812+02:00  INFO 110320 --- [registro] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-16T11:30:22.813+02:00  INFO 110320 --- [registro] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-16T11:30:22.951+02:00  INFO 110320 --- [registro] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-16T11:30:22.952+02:00  INFO 110320 --- [registro] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3424 ms
+2024-05-16T11:30:23.171+02:00  INFO 110320 --- [registro] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-16T11:30:23.288+02:00  INFO 110320 --- [registro] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-16T11:30:23.345+02:00  INFO 110320 --- [registro] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-16T11:30:23.699+02:00  INFO 110320 --- [registro] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-16T11:30:23.737+02:00  INFO 110320 --- [registro] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-16T11:30:24.227+02:00  INFO 110320 --- [registro] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6aa6c17
+2024-05-16T11:30:24.230+02:00  INFO 110320 --- [registro] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-05-16T11:30:24.300+02:00  WARN 110320 --- [registro] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-16T11:30:25.980+02:00  INFO 110320 --- [registro] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-16T11:30:26.110+02:00  INFO 110320 --- [registro] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-16T11:30:26.444+02:00  INFO 110320 --- [registro] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-16T11:30:27.806+02:00  WARN 110320 --- [registro] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-16T11:30:28.489+02:00  INFO 110320 --- [registro] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-05-16T11:30:28.510+02:00  INFO 110320 --- [registro] [main] i.p.r.registro.RegistroApplication       : Started RegistroApplication in 9.623 seconds (process running for 10.112)
+2024-05-16T11:30:30.768+02:00  INFO 110320 --- [registro] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-16T11:30:30.769+02:00  INFO 110320 --- [registro] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-05-16T11:30:30.776+02:00  INFO 110320 --- [registro] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
