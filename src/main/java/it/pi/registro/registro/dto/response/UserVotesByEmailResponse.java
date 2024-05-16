@@ -6,21 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDataResponseDTO {
+public class UserVotesByEmailResponse {
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String address;
-    private String city;
-    private String role;
-    private List<UserSubjectDTO> votes;
-    private String currentSchoolClass;
+    private Map<String, String> results = new HashMap<>();
 
 }

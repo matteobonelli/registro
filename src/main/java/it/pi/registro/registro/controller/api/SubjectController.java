@@ -1,4 +1,4 @@
-package it.pi.registro.registro.controller;
+package it.pi.registro.registro.controller.api;
 
 import it.pi.registro.registro.dto.request.SubjectCreateRequestDTO;
 import it.pi.registro.registro.entity.Subject;

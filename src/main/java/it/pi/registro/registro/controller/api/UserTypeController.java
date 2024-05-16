@@ -1,8 +1,6 @@
-package it.pi.registro.registro.controller;
+package it.pi.registro.registro.controller.api;
 
-import it.pi.registro.registro.entity.User;
 import it.pi.registro.registro.entity.UserType;
-import it.pi.registro.registro.service.UserService;
 import it.pi.registro.registro.service.UserTypeService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

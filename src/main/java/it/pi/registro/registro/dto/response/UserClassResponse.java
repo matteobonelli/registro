@@ -12,15 +12,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDataResponseDTO {
+public class UserClassResponse {
 
     private String firstName;
     private String lastName;
     private String email;
-    private String address;
-    private String city;
-    private String role;
-    private List<UserSubjectDTO> votes;
-    private String currentSchoolClass;
+    private String className;
 
 }

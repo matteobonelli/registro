@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,6 +23,8 @@ public class UserCreateRequestDTO {
     @NotBlank
     @Email
     private String email;
+    @NotBlank
+    private LocalDate dateOfBirth;
     @NotBlank
     private String password;
     @NotBlank

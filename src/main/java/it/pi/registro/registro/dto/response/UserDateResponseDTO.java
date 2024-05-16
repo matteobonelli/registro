@@ -5,14 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInfoResponseDTO {
+public class UserDateResponseDTO {
 
     private String name;
     private String surname;
-    private String role;
+    private String email;
+    private String birth;
+    private String days_to_birthday;
+    private String age;
 
 }
