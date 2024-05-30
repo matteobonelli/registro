@@ -13,4 +13,7 @@ public class RegistroProp {
 
     @Value("${registro.vote.month.end}")
     private int voteEndDate;
+
+    @Value("${registro.language.default}")
+    private String defaultLang;
 }

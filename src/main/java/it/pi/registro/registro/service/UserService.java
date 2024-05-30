@@ -38,6 +38,8 @@ public interface UserService {
 
     List<UserClassResponse> getUsersFromClass(UserClassRequest userClassRequest);
 
+    List<UserClassResponse> getAllUsersFromClass(String className);
+
     User updateUser(User user);
 
     void deleteUser(Long userId, Boolean isSoftDelete);

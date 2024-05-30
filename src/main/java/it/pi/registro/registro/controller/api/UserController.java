@@ -69,8 +69,8 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
-        User user = userService.getUserById(userId);
+    public ResponseEntity<UserDataResponseDTO> getUserById(@PathVariable("id") Long userId){
+        UserDataResponseDTO user = userMapper.toDataResponseDTO(userService.getUserById(userId));
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -90,12 +90,19 @@ public class UserController {
 
     @GetMapping("/getStudentByClass")
     public ResponseEntity<List<UserClassResponse>> getUsersByClass(@Valid @RequestBody UserClassRequest userClassRequest){
+        System.out.println(userClassRequest);
         List<UserClassResponse> usersFromClasses = userService.getUsersFromClass(userClassRequest);
         return new ResponseEntity<>(usersFromClasses, HttpStatus.OK);
     }
 
+    @GetMapping("/getUsersByClass/{name}")
+    public ResponseEntity<List<UserClassResponse>> getUsersByClassName(@PathVariable("name") String name){
+        List<UserClassResponse> usersFromClasses = userService.getAllUsersFromClass(name);
+        return new ResponseEntity<>(usersFromClasses, HttpStatus.OK);
+    }
+
     @GetMapping("/getStudentByName")
-    public ResponseEntity<List<User>> getUsersByClass(@Valid @RequestBody UserNameRequest userNameRequest){
+    public ResponseEntity<List<User>> getUserByName(@Valid @RequestBody UserNameRequest userNameRequest){
         List<User> users = userService.getUsersWithString(userNameRequest);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }

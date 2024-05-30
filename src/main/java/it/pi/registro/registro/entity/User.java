@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,11 +37,14 @@ public class User {
     private String password;
     @Column(nullable = false)
     private Boolean isActive;
-
-    private String activeClass;
-
     @Column(nullable = false)
     private LocalDate birth_date;
+    @Column
+    private LocalDateTime createdDate;
+    @Column
+    private LocalDateTime updatedDate;
+
+    private String activeClass;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_detail_id", referencedColumnName = "id")
@@ -83,7 +87,16 @@ public class User {
 
     @PrePersist
     public void prePersist(){
+
         this.isActive = true;
+        this.password = "123456";
+        this.createdDate = LocalDateTime.now();
+        this.updatedDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        this.updatedDate = LocalDateTime.now();
     }
 
 

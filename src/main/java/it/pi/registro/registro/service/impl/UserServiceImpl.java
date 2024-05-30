@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private AttendanceRepository attendanceRepository;
+    @Autowired
+    private SchoolClassRepository schoolClassRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -219,6 +221,19 @@ public class UserServiceImpl implements UserService {
         }
 
         return studentsFromClasses;
+    }
+
+    @Override
+    public List<UserClassResponse> getAllUsersFromClass(String className) {
+        List<UserSchoolClass> userSchoolClassList = userSchoolClassRepository.findBySchoolClassName(className);
+        List<UserClassResponse> classUsers =  new ArrayList<>();
+        userSchoolClassList.forEach(userSchoolClass -> {
+            classUsers.add(new UserClassResponse(userSchoolClass.getUser().getFirstName(),
+                    userSchoolClass.getUser().getLastName(),
+                    userSchoolClass.getUser().getEmail(),
+                    className));
+        });
+        return classUsers;
     }
 
     @Override

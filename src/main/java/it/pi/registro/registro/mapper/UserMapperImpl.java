@@ -32,9 +32,11 @@ public class UserMapperImpl implements UserMapper{
         System.out.println(("\n\n\n\n\n"));
 
         UserDataResponseDTO userDataResponseDTO = new UserDataResponseDTO(
+                user.getId().toString(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),
+                user.getBirth_date(),
                 user.getUserDetail()!=null && user.getUserDetail().getAddress() != null ? user.getUserDetail().getAddress() : "NO ADDRESS",
                 user.getUserDetail()!=null && user.getUserDetail().getCity() != null ? user.getUserDetail().getCity() : "NO CITY",
                 user.getUserDetail()!=null && user.getUserType().getDescription() != null ? user.getUserType().getType() : "NO TYPE",

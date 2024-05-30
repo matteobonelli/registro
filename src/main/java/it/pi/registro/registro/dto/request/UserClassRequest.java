@@ -19,4 +19,11 @@ public class UserClassRequest {
 
     private String className;
 
+    @Override
+    public String toString() {
+        return "UserClassRequest{" +
+                "teacherEmail='" + teacherEmail + '\'' +
+                ", className='" + className + '\'' +
+                '}';
+    }
 }

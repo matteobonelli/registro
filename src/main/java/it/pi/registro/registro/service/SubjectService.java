@@ -1,6 +1,7 @@
 package it.pi.registro.registro.service;
 
 import it.pi.registro.registro.dto.request.SubjectCreateRequestDTO;
+import it.pi.registro.registro.dto.response.SubjectResponse;
 import it.pi.registro.registro.entity.Subject;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface SubjectService {
 
     Subject getSubjectById(Long subjectId);
 
-    List<Subject> getAllSubjects();
+    List<SubjectResponse> getAllSubjects();
 
     Subject updateSubject(Subject subject);
 

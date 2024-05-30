@@ -14,5 +14,8 @@ public interface UserSchoolClassRepository extends JpaRepository<UserSchoolClass
     @Query("SELECT u from UserSchoolClass u where u.user.id = :userId")
     List<UserSchoolClass> findByUserId(@Param("userId")Long userId);
 
+    @Query("SELECT u from UserSchoolClass u where u.schoolClass.name = :name")
+    List<UserSchoolClass> findBySchoolClassName(@Param("name")String name);
+
 }
 
