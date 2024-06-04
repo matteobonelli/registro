@@ -16,4 +16,7 @@ public class RegistroProp {
 
     @Value("${registro.language.default}")
     private String defaultLang;
+
+    @Value("${registro.api.urls}")
+    private String apiUrls;
 }

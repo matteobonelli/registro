@@ -2,6 +2,7 @@ package it.pi.registro.registro.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import lombok.Setter;
 @Table(name = "user_type")
 @Getter
 @Setter
+@Builder
 public class UserType {
 
     @Id

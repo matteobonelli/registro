@@ -2,10 +2,7 @@ package it.pi.registro.registro.entity;
 
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.text.SimpleDateFormat;
 
@@ -15,6 +12,7 @@ import java.text.SimpleDateFormat;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserDetail {
 
     @Id

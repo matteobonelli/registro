@@ -41,6 +41,7 @@ public class GlobalExceptionHandler {
         return errors;
     }
 
+
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
