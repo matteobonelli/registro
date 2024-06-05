@@ -10,4 +10,5 @@ import java.util.List;
 public interface ApiKeyService {
     List<ApiKey> getApiKeys();
 
+    Boolean getAndValidateApiKeys(String apiKey, String uri);
 }

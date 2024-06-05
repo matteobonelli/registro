@@ -1,13 +1,12 @@
 package it.pi.registro.registro.service.impl;
 
 import it.pi.registro.registro.dto.request.CsvImportRequest;
-import it.pi.registro.registro.entity.User;
-import it.pi.registro.registro.entity.UserDetail;
-import it.pi.registro.registro.entity.UserType;
+import it.pi.registro.registro.entity.*;
 import it.pi.registro.registro.exception.BadRequestException;
 import it.pi.registro.registro.repository.UserRepository;
 import it.pi.registro.registro.service.AttendanceService;
 import it.pi.registro.registro.service.ImportService;
+import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -25,6 +24,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.io.Reader;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Iterator;
@@ -35,6 +35,8 @@ import java.util.Iterator;
 public class ImportServiceImpl implements ImportService {
 
     private static final Logger logger = LoggerFactory.getLogger(AttendanceService.class);
+
+    private RequestLog requestLog;
 
     @Autowired
     UserRepository userRepository;
@@ -74,5 +76,11 @@ public class ImportServiceImpl implements ImportService {
         } catch (DataIntegrityViolationException e) {
             throw new BadRequestException(e.getMessage());
         }
+    }
+
+    @PostConstruct
+    public void postConstruct(){
+        requestLog.setCallDate(LocalDateTime.now());
+        System.out.println("postConstruct");
     }
 }

@@ -1,6 +1,8 @@
 package it.pi.registro.registro.configuration;
 
+import it.pi.registro.registro.exception.ApiValidationException;
 import it.pi.registro.registro.exception.BadRequestException;
+import it.pi.registro.registro.exception.BlackListException;
 import it.pi.registro.registro.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -39,6 +41,19 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         return errors;
+    }
+
+    @ExceptionHandler(ApiValidationException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseBody
+    public Map<String, String> handleApiValidationException(ApiValidationException ave){
+        return new HashMap<String, String>()
+        {
+            {
+                put("ERROR_MESSAGE", ave.getMessage());
+                put("ERROR_CODE", String.valueOf(ave.getCode()));
+            }
+        };
     }
 
 

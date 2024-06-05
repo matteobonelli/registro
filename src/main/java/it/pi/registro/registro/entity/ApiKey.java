@@ -28,4 +28,14 @@ public class ApiKey {
     @Column
     private LocalDateTime endDate;
 
+    @Override
+    public String toString() {
+        return "ApiKey{" +
+                "id=" + id +
+                ", apiKey='" + apiKey + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }

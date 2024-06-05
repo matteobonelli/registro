@@ -11,5 +11,10 @@ import java.util.List;
 
 @Repository
 public interface ApiKeyRepository extends JpaRepository<ApiKey, Long> {
+    @Query("select ak from ApiKey ak \n" +
+            "where curdate() between date(ak.startDate)\n" +
+            "and date(ak.endDate)\n" +
+            "and ak.apiKey = :apiKey")
+    List<ApiKey> findValidApiKeys(@Param("apiKey")String apiKey);
 }
 
