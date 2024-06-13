@@ -1,0 +1,17 @@
+<configuration>
+    <!-- Define the log file path -->
+    <property name="LOG_FILE_PATH" value="C:\\Users\\bonel\\Desktop\\logs\\app.log" />
+
+    <!-- Appender to write logs to a file -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_FILE_PATH}</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

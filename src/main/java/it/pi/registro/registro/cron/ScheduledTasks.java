@@ -1,6 +1,7 @@
 package it.pi.registro.registro.cron;
 
 import it.pi.registro.registro.entity.User;
+import it.pi.registro.registro.service.ApiKeyService;
 import it.pi.registro.registro.service.ScheduledService;
 import it.pi.registro.registro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,16 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Component
 public class ScheduledTasks {
 
     @Autowired
     private ScheduledService scheduledService;
+
+    @Autowired
+    private ApiKeyService apiKeyService;
 
     @Autowired
     UserService userService;
@@ -53,5 +58,16 @@ public class ScheduledTasks {
 //    @Scheduled(cron = "1 * * * * *") // Cron expression for running every minute
     public void execute1() {
         scheduledService.createReport();
+    }
+
+    // @Scheduled(cron = "*/3 * * * * *") // Cron expression for running every minute
+    public void execute2() {
+        try{
+            LocalDateTime requestDate = LocalDateTime.now();
+            System.out.println(apiKeyService.getExternalApiData(requestDate));
+        } catch (Exception e){
+            System.out.println("Errore: " + e);
+        }
+
     }
 }

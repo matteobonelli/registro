@@ -6,7 +6,8 @@ import it.pi.registro.registro.exception.BadRequestException;
 import it.pi.registro.registro.repository.UserRepository;
 import it.pi.registro.registro.service.AttendanceService;
 import it.pi.registro.registro.service.ImportService;
-import jakarta.annotation.PostConstruct;
+import it.pi.registro.registro.service.LogService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -15,36 +16,34 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.io.Reader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Base64;
-import java.util.Date;
-import java.util.Iterator;
 
 @Service
 @AllArgsConstructor
-@Transactional
 public class ImportServiceImpl implements ImportService {
 
     private static final Logger logger = LoggerFactory.getLogger(AttendanceService.class);
 
-    private RequestLog requestLog;
+    @Autowired
+    private LogService logService;
 
     @Autowired
     UserRepository userRepository;
 
     @Override
-    public void importCsv(CsvImportRequest csvImportRequest) throws Exception{
+    public void importCsv(CsvImportRequest csvImportRequest, HttpServletRequest request) throws Exception{
         logger.info("Base 64 is:");
         logger.info(csvImportRequest.getBase64File());
+        LocalDateTime requestTime = LocalDateTime.now();
         try {
             byte[] decodedBytes = Base64.getDecoder().decode(csvImportRequest.getBase64File());
             InputStreamReader reader = new InputStreamReader(new ByteArrayInputStream(decodedBytes), StandardCharsets.UTF_8);
@@ -73,14 +72,19 @@ public class ImportServiceImpl implements ImportService {
             }
             reader.close();
             csvParser.close();
+            logService.saveRequest(csvImportRequest, request,
+                    HttpStatus.OK.value(),
+                    HttpStatus.OK.toString(),
+                    requestTime,
+                    LocalDateTime.now());
         } catch (DataIntegrityViolationException e) {
+            logger.info("CIAONE");
+            logService.saveRequest(csvImportRequest, request,
+                    HttpStatus.BAD_REQUEST.value(),
+                    HttpStatus.BAD_REQUEST.toString(),
+                    requestTime,
+                    LocalDateTime.now());
             throw new BadRequestException(e.getMessage());
         }
-    }
-
-    @PostConstruct
-    public void postConstruct(){
-        requestLog.setCallDate(LocalDateTime.now());
-        System.out.println("postConstruct");
     }
 }
