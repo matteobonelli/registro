@@ -1,6 +1,7 @@
 package it.pi.registro.registro.controller.api;
 
 import it.pi.registro.registro.dto.DashboardResultDTO;
+import it.pi.registro.registro.model.PropagateJsonResponse;
 import it.pi.registro.registro.service.DashboardService;
 import it.pi.registro.registro.service.LogService;
 import lombok.AllArgsConstructor;
@@ -38,7 +39,7 @@ public class LogController {
     }
 
     @GetMapping("/getLog")
-    public ResponseEntity<Object> getLog(){
+    public ResponseEntity<PropagateJsonResponse> getLog(){
         logger.info("GetLog Controller Executed");
         return new ResponseEntity<>(
                 logService.getLog(),

@@ -1,17 +1,34 @@
 <configuration>
-    <!-- Define the log file path -->
-    <property name="LOG_FILE_PATH" value="C:\\Users\\bonel\\Desktop\\logs\\app.log" />
+    <!-- Define the pattern for your log entries -->
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />
 
-    <!-- Appender to write logs to a file -->
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${LOG_FILE_PATH}</file>
+    <!-- Define the directory where logs will be stored -->
+    <property name="LOG_DIR" value="C:\\Users\\bonel\\Desktop\\logs" />
+
+    <!-- Console appender configuration -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
-    <!-- Root logger -->
+    <!-- File appender configuration with daily rotation -->
+    <appender name="dailyFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Define fileNamePattern to include the current date even for the active log file -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover with the active file name pattern -->
+            <fileNamePattern>${LOG_DIR}\\%d{yyyy-MM-dd}_app_spring.log</fileNamePattern>
+            <!-- keep 30 days worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger configuration -->
     <root level="INFO">
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="console" />
+        <appender-ref ref="dailyFile" />
     </root>
 </configuration>

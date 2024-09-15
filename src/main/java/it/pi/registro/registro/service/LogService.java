@@ -3,6 +3,7 @@ package it.pi.registro.registro.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.pi.registro.registro.dto.request.CsvImportRequest;
 import it.pi.registro.registro.entity.RequestLog;
+import it.pi.registro.registro.model.PropagateJsonResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,5 @@ public interface LogService {
                            LocalDateTime requestTime,
                            LocalDateTime responseTime) throws JsonProcessingException;
 
-    Object getLog();
+    PropagateJsonResponse getLog();
 }

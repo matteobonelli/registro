@@ -92,6 +92,9 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>
+			spring_registro_docker
+		</finalName>
 	</build>
 
 </project>

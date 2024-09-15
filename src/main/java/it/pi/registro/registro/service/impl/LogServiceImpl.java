@@ -67,7 +67,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Object getLog() {
+    public PropagateJsonResponse getLog() {
         try{
             logger.info("GetLogService Started");
             LocalDateTime startDate = LocalDateTime.now();
@@ -78,9 +78,9 @@ public class LogServiceImpl implements LogService {
             mappedString.setEndDate(LocalDateTime.now());
 
             System.out.println(mappedString);
-            //restTemplate.postForObject(registroProp.getGetSaveLogUrl(), log, String.class);
+            restTemplate.postForObject(registroProp.getGetSaveLogUrl(), mappedString, String.class);
             logger.info("GetLogService Executed Correctly");
-            return log;
+            return mappedString;
         } catch(Exception e){
             logger.error("GetLogService Couldn't be Executed Correctly");
             return null;
